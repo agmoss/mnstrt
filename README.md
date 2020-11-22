@@ -9,6 +9,7 @@
 - [Structure](#structure)
 - [Usage](#Usage)
 - [Database](#database)
+- [Properties](#properties)
 - [Requirements](#requirements)
 - [Format](#format)
 - [License](#license)
@@ -20,6 +21,8 @@ The goal of this project is to create an automated rental listing collector. Dat
 ## Design
 
 This codebase is written in Python 3.8.5 and managed via [venv](https://docs.python.org/3/tutorial/venv.html). This codebase is both a collection of useful python functions as well as a [CLI](https://click.palletsprojects.com/en/7.x/) program. If required, the python functions can be extracted from the codebase and used in a notebook environment.
+
+This program is structured according to the [Kennith Reitz recommendation](https://docs.python-guide.org/writing/structure/)
 
 ## Structure
 
@@ -81,6 +84,26 @@ ALTER ROLE mnstrtuser superuser;
 ```
 
 After creating the database and user populate a `database.ini` file with the necessary values
+
+## Properties
+
+Target properties are:
+
+- address
+- company (from website)
+- price
+- latitude
+- longitude
+- bedrooms
+- baths
+- type
+- city
+- location
+- utilities_included
+- website
+- intro
+
+Target properties can be added or removed by altering `create_table.py`, `fetch_store.py`, and `insert_listing.py`
 
 ## Requirements
 
