@@ -1,5 +1,8 @@
+"""Create database table"""
+
 import psycopg2
 from . import config
+
 
 def create_table():
     """ create rental data in the PostgreSQL database"""
@@ -30,7 +33,7 @@ def create_table():
         cur.execute(command)
         cur.close()
         conn.commit()
-        print('rental_data table created')
+        print("rental_data table created")
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:

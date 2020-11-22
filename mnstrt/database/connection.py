@@ -1,5 +1,8 @@
+"""Provide a connection object to functions that need to access the database"""
+
 import psycopg2
 from . import config
+
 
 def connect():
     """ Connect to the PostgreSQL database server """
@@ -16,5 +19,6 @@ def connect():
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     connect()

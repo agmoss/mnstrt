@@ -1,7 +1,9 @@
+"""Verify PostgreSQL setup"""
 import psycopg2
 from . import config
 
-def connect():
+
+def test_connection():
     """ Connect to the PostgreSQL database server """
     conn = None
     try:
@@ -28,5 +30,6 @@ def connect():
             conn.close()
             print("Database connection closed")
 
-if __name__ == '__main__':
-    connect()
+
+if __name__ == "__main__":
+    test_connection()
