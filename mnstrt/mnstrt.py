@@ -6,9 +6,11 @@ from time import strftime
 import requests
 import tldextract
 
-from mnstrt.database import connect
+from mnstrt.database import test_connection
 from mnstrt.database import insert_listing
 from mnstrt.database import create_table
+
+from mnstrt.analysis import query_data
 
 
 def mnstrt():
@@ -53,9 +55,11 @@ def main(option):
             schedule.run_pending()
             time.sleep(1)
     if(option == 'test_connection'):
-        connect.connect()
+        test_connection.connect()
     if(option == 'create_table'):
         create_table.create_table()
+    if(option == 'analysis'):
+        query_data.data_for_analysis()
 
 
 if __name__ == "__main__":
