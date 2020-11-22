@@ -12,6 +12,7 @@
 - [Properties](#properties)
 - [Requirements](#requirements)
 - [Format](#format)
+- [Deployment](#deployment)
 - [License](#license)
 
 ## Scope
@@ -127,6 +128,33 @@ Linting via [pylint](https://www.pylint.org/)
 
 ```bash
 pylint ./mnstrt
+```
+
+## Deployment
+
+This application can be hosted on any cloud provider that supports postgres and docker. It is currently deployed as:
+
+- Azure Database for PostgreSQL server
+- Azure Container Instance
+
+### Docker
+
+Build
+
+```bash
+sudo docker-compose build
+```
+
+Run Local
+
+```bash
+sudo docker-compose up
+```
+
+Push to registry
+
+```bash
+sudo docker-compose push
 ```
 
 ## License
