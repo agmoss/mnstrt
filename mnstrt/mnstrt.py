@@ -1,11 +1,17 @@
+import click
 import pandas as pd
+import schedule
+import time
 from time import strftime
 import requests
 import tldextract
 
+from mnstrt.database import connect
 from mnstrt.database import insert_listing
+from mnstrt.database import create_table
 
-def main():
+
+def mnstrt():
     """ Fetch and store rental data """
     for page in range(2):
         url = "https://www.rentfaster.ca/api/search.json?keywords=&proximity_type=location-proximity&cur_page={}&beds=&type%5B%5D=Apartment&type%5B%5D=Condo&type%5B%5D=Loft&price_range_adv%5Bfrom%5D=null&price_range_adv%5Bto%5D=null&novacancy=0&city_id=5"
@@ -32,6 +38,24 @@ def main():
 
             # Insert row
             insert_listing.insert_listing(target_listing)
+        print('Page {} inserted'.format(page :=page+1))
+    print("Done")
+
+@click.command()
+@click.option('--option', '-opt')
+def main(option):
+    if(option == 'collect'):
+        mnstrt()
+    if(option == 'schedule_collect'):
+        print('Collecting data')
+        schedule.every().day.at("02:00").do(mnstrt)
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
+    if(option == 'test_connection'):
+        connect.connect()
+    if(option == 'create_table'):
+        create_table.create_table()
 
 
 if __name__ == "__main__":

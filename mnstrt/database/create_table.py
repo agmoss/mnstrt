@@ -1,5 +1,5 @@
 import psycopg2
-
+from . import config
 
 def create_table():
     """ create rental data in the PostgreSQL database"""
@@ -10,7 +10,7 @@ def create_table():
                 longitude DOUBLE PRECISION,
                 address VARCHAR(255),
                 price DOUBLE PRECISION,
-                bedrooms INTEGER, 
+                bedrooms VARCHAR(255), 
                 baths INTEGER,
                 type VARCHAR(255),
                 city VARCHAR(255),
@@ -24,17 +24,13 @@ def create_table():
         """
     conn = None
     try:
-        conn = psycopg2.connect(
-            database="mnstrt",
-            user="mnstrtuser",
-            password="mnstrtpass",
-            host="127.0.0.1",
-            port="5432",
-        )
+        params = config.config()
+        conn = psycopg2.connect(**params)
         cur = conn.cursor()
         cur.execute(command)
         cur.close()
         conn.commit()
+        print('rental_data table created')
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:

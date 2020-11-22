@@ -1,5 +1,6 @@
 import psycopg2
 import datetime
+from . import config
 
 
 def insert_listing(listing):
@@ -9,13 +10,8 @@ def insert_listing(listing):
     conn = None
     id = None
     try:
-        conn = psycopg2.connect(
-            database="mnstrt",
-            user="mnstrtuser",
-            password="mnstrtpass",
-            host="127.0.0.1",
-            port="5432",
-        )
+        params = config.config()
+        conn = psycopg2.connect(**params)
         cur = conn.cursor()
         cur.execute(
             sql,

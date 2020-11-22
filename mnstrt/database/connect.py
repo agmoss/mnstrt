@@ -1,18 +1,16 @@
 import psycopg2
-
+from . import config
 
 def connect():
     """ Connect to the PostgreSQL database server """
     conn = None
     try:
+
+        params = config.config()
+
         print("Connecting to the PostgreSQL database...")
-        conn = psycopg2.connect(
-            database="mnstrt",
-            user="mnstrtuser",
-            password="mnstrtpass",
-            host="127.0.0.1",
-            port="5432",
-        )
+
+        conn = psycopg2.connect(**params)
 
         cur = conn.cursor()
 
@@ -29,3 +27,6 @@ def connect():
         if conn is not None:
             conn.close()
             print("Database connection closed")
+
+if __name__ == '__main__':
+    connect()
