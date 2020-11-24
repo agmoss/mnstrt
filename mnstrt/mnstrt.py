@@ -18,7 +18,7 @@ def main(option):
         fetch_store.fetch_store()
     if option == "schedule_collect":
         print("Collecting data")
-        schedule.every().day.at("02:00").do(fetch_store.fetch_store())
+        schedule.every().day.at("02:00").do(fetch_store.fetch_store)
         while True:
             schedule.run_pending()
             time.sleep(1)
