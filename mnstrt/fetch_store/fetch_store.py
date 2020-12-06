@@ -26,7 +26,7 @@ def fetch_store():
                 target_listing["userId"] = listing["userId"]
                 target_listing["city"] = listing["city"]
                 target_listing["address"] = listing["address"]
-                target_listing["price"] = listing["price"]
+                target_listing["price"] = float(listing["price"])
                 target_listing["latitude"] = listing["latitude"]
                 target_listing["longitude"] = listing["longitude"]
                 target_listing["bedrooms"] = listing["bedrooms"]
@@ -34,16 +34,16 @@ def fetch_store():
                 target_listing["type"] = listing["type"]
                 target_listing["city"] = listing["city"]
                 target_listing["location"] = listing["location"]
-                target_listing["utilities_included"] = str(listing["utilities_included"])
+                target_listing["utilities_included"] = str(
+                    listing["utilities_included"]
+                )
                 target_listing["title"] = str(listing["title"])
                 target_listing["sq_feet"] = listing["sq_feet"]
                 target_listing["community"] = listing["community"]
 
-                # print(target_listing)
-
                 # Insert row
                 insert_listing.insert_listing(target_listing)
-            print("Page {} inserted".format(page := page + 1))
+            print("Page {} inserted".format(page))
     print("Done")
 
 

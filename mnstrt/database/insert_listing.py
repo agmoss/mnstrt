@@ -7,7 +7,7 @@ from . import config
 
 def insert_listing(listing):
     """ insert a rental listing into the rental_data table """
-    sql = """INSERT INTO rental_data_v2(latitude,longitude,address,price,bedrooms,baths,type,city,location,utilities_included,community,sq_feet,title,userId,retrieval_date)
+    sql = """INSERT INTO rental_data_v3(latitude,longitude,address,price,bedrooms,baths,type,city,location,utilities_included,community,sq_feet,title,userId,retrieval_date)
              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id;"""
     conn = None
     i_d = None
@@ -31,7 +31,7 @@ def insert_listing(listing):
                 listing["community"],
                 listing["sq_feet"],
                 listing["title"],
-                listing['userId'],
+                listing["userId"],
                 datetime.datetime.now(),
             ),
         )
