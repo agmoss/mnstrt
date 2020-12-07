@@ -3,4 +3,4 @@ EXPOSE 5432
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
-CMD ["python", "-m", "mnstrt", "-opt", "schedule_collect"]
+CMD ["python", "-m", "mnstrt", "-opt", "collect_schedule"]
