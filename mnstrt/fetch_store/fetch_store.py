@@ -10,9 +10,10 @@ from ..database import insert_listing
 
 def fetch_store():
     """ Fetch and store rental data """
-    for city in range(1, 5):
+    for city in [1,2,3,4,5,72,73]:
+        print(city)
         for page in range(1, 100):
-            url = "https://www.rentfaster.ca/api/search.json?keywords=&proximity_type=location-proximity&beds=&type%5B%5D=Apartment&type%5B%5D=Condo&type%5B%5D=Loft&price_range_adv%5Bfrom%5D=null&price_range_adv%5Bto%5D=null&furnishing=Unfurnished&novacancy=0&city_id={}&cur_page={}".format(
+            url = "https://www.rentfaster.ca/api/search.json?keywords=&proximity_type=location-proximity&beds=&type%5B%5D=Apartment&type%5B%5D=Condo&type%5B%5D=Loft&price_range_adv%5Bfrom%5D=null&price_range_adv%5Bto%5D=null&furnishing=Unfurnished&novacancy=0&type%5B%5D=Townhouse&city_id={}&cur_page={}".format(
                 city, page
             )
             response = requests.get(url)
