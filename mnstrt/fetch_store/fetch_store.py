@@ -4,6 +4,7 @@ import time
 from time import strftime
 import pandas as pd
 import requests
+import re
 
 from ..database import insert_listing
 
@@ -20,31 +21,45 @@ def fetch_store():
             data = response.json()
             listings = data["listings"]
             for listing in listings:
-                target_listing = {}
-                target_listing["retrieval_date"] = pd.to_datetime("today").strftime(
-                    "%m/%d/%Y"
-                )
-                target_listing["userId"] = listing["userId"]
-                target_listing["city"] = listing["city"]
-                target_listing["address"] = listing["address"]
-                target_listing["price"] = float(listing["price"])
-                target_listing["latitude"] = listing["latitude"]
-                target_listing["longitude"] = listing["longitude"]
-                target_listing["bedrooms"] = listing["bedrooms"]
-                target_listing["baths"] = listing["baths"]
-                target_listing["type"] = listing["type"]
-                target_listing["city"] = listing["city"]
-                target_listing["location"] = listing["location"]
-                target_listing["utilities_included"] = str(
-                    listing["utilities_included"]
-                )
-                target_listing["title"] = str(listing["title"])
-                target_listing["sq_feet"] = listing["sq_feet"]
-                target_listing["community"] = listing["community"]
+                try:
+                    target_listing = {}
 
-                # Insert row
-                insert_listing.insert_listing(target_listing)
-            print("Page {} inserted".format(page))
+                    sq_feet = re.sub(
+                                "[^0-9]", "", listing['sq_feet'])
+
+                    sq_feet = float(sq_feet) if sq_feet.isdigit() else None
+
+                    target_listing["retrieval_date"] = pd.to_datetime("today").strftime(
+                        "%m/%d/%Y"
+                    )
+                    target_listing["userId"] = listing["userId"]
+                    target_listing["city"] = listing["city"]
+                    target_listing["address"] = listing["address"]
+                    target_listing["price"] = float(listing["price"])
+                    target_listing["latitude"] = listing["latitude"]
+                    target_listing["longitude"] = listing["longitude"]
+                    target_listing["bedrooms"] = listing["bedrooms"]
+                    target_listing["baths"] = listing["baths"]
+                    target_listing["type"] = listing["type"]
+                    target_listing["city"] = listing["city"]
+                    target_listing["location"] = listing["location"]
+                    target_listing["utilities_included"] = str(
+                        listing["utilities_included"]
+                    )
+                    target_listing["title"] = str(listing["title"])
+                    target_listing["sq_feet"] = sq_feet
+                    target_listing["community"] = listing["community"]
+                    target_listing["garage_size"] = listing["garage_size"]
+
+                    # Insert row
+                    insert_listing.insert_listing(target_listing)
+                except Exception as ex:
+                    template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                    message = template.format(type(ex).__name__, ex.args)
+                    print(message)
+                    pass
+        print("Page {} inserted".format(page))
+
     print("Done")
 
 

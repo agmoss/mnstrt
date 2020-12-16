@@ -7,7 +7,7 @@ from . import config
 def create_table():
     """ create rental data in the PostgreSQL database"""
     command = """
-        CREATE TABLE rental_data_v3 (
+        CREATE TABLE rental_data_v4 (
                 id SERIAL PRIMARY KEY,
                 latitude DOUBLE PRECISION,
                 longitude DOUBLE PRECISION,
@@ -22,8 +22,9 @@ def create_table():
                 retrieval_date DATE,
                 title VARCHAR(255),
                 userid VARCHAR(255),
-                sq_feet VARCHAR(255),
-                community VARCHAR(255)
+                sq_feet DOUBLE PRECISION,
+                community VARCHAR(255),
+                garage_size VARCHAR(255)
         )
         """
     conn = None
@@ -34,7 +35,7 @@ def create_table():
         cur.execute(command)
         cur.close()
         conn.commit()
-        print("rental_data_v3 table created")
+        print("rental_data_v4 table created")
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
