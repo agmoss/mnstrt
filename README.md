@@ -81,7 +81,8 @@ This project uses postgres as a database
 CREATE DATABASE mnstrt;
 CREATE USER mnstrtuser WITH ENCRYPTED PASSWORD '<password>';
 GRANT ALL PRIVILEGES ON DATABASE mnstrt TO mnstrtuser;
-ALTER ROLE mnstrtuser superuser;
+CREATE SCHEMA public;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mnstrtadmin;
 ```
 
 After creating the database and user populate a `database.ini` file with the necessary values

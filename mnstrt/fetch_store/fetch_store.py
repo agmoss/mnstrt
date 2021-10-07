@@ -35,7 +35,10 @@ def fetch_store():
                     target_listing["userId"] = listing["userId"]
                     target_listing["city"] = listing["city"]
                     target_listing["address"] = listing["address"]
-                    target_listing["price"] = float(listing["price"])
+                    try: 
+                        target_listing["price"] = float(listing["price"])
+                    except:
+                        target_listing["price"] = float(listing["price"].split('-')[0])
                     target_listing["latitude"] = listing["latitude"]
                     target_listing["longitude"] = listing["longitude"]
                     target_listing["bedrooms"] = listing["bedrooms"]
