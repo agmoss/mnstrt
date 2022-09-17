@@ -4,16 +4,24 @@
 
 ## Table of Contents
 
-- [Scope](#scope)
-- [Design](#design)
-- [Structure](#structure)
-- [Usage](#Usage)
-- [Database](#database)
-- [Properties](#properties)
-- [Requirements](#requirements)
-- [Format](#format)
-- [Deployment](#deployment)
-- [License](#license)
+- [`mnstrt`](#mnstrt)
+  - [Table of Contents](#table-of-contents)
+  - [Scope](#scope)
+  - [Design](#design)
+  - [Structure](#structure)
+  - [Usage](#usage)
+    - [Create venv](#create-venv)
+    - [Activate venv](#activate-venv)
+    - [Install Packages](#install-packages)
+    - [Run CLI](#run-cli)
+      - [CLI Options](#cli-options)
+  - [Database](#database)
+  - [Properties](#properties)
+  - [Requirements](#requirements)
+  - [Format](#format)
+  - [Deployment](#deployment)
+    - [Docker](#docker)
+  - [License](#license)
 
 ## Scope
 
@@ -21,7 +29,7 @@ The goal of this project is to create an automated rental listing collector. Dat
 
 ## Design
 
-This codebase is written in Python 3.8.5 and managed via [venv](https://docs.python.org/3/tutorial/venv.html). This codebase is both a collection of useful python functions as well as a [CLI](https://click.palletsprojects.com/en/7.x/) program. If required, the python functions can be extracted from the codebase and used in a notebook environment.
+This codebase is written in Python 3.10 and managed via [venv](https://docs.python.org/3/tutorial/venv.html). This codebase is both a collection of useful python functions as well as a [CLI](https://click.palletsprojects.com/en/7.x/) program. If required, the python functions can be extracted from the codebase and used in a notebook environment.
 
 This program is structured according to the [Kennith Reitz recommendation](https://docs.python-guide.org/writing/structure/)
 
@@ -57,6 +65,12 @@ source env/bin/activate
 
 ```bash
 env\Scripts\activate.bat
+```
+
+### Install Packages
+
+```bash
+pip install -r requirements.txt
 ```
 
 ### Run CLI
