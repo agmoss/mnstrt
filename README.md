@@ -96,7 +96,7 @@ CREATE DATABASE mnstrt;
 CREATE USER mnstrtuser WITH ENCRYPTED PASSWORD '<password>';
 GRANT ALL PRIVILEGES ON DATABASE mnstrt TO mnstrtuser;
 CREATE SCHEMA public;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mnstrtadmin;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mnstrtuser;
 ```
 
 After creating the database and user populate a `database.ini` file with the necessary values
